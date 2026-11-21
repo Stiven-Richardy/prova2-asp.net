@@ -1,0 +1,50 @@
+﻿@model Prova2.Web.Models.ProdutoItemDto
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Excluir Produto";
+    var cultura = new CultureInfo("pt-BR");
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-danger" style="border-top: 4px solid #dc3545 !important;">
+            <div class="card-header bg-white py-3 border-bottom d-flex align-items-center gap-2">
+                <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+                <div>
+                    <h5 class="mb-0 fw-bold text-danger">Confirmação de Exclusão</h5>
+                    <span class="text-muted small">Esta operação é irreversível e removerá o registro permanentemente.</span>
+                </div>
+            </div>
+
+            <div class="card-body p-4">
+                <p class="text-secondary mb-3">
+                    Deseja remover permanentemente o produto <strong>@Model.Nome</strong> (#@Model.Id)?
+                </p>
+
+                <div class="bg-light p-3 rounded border mb-4">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 text-muted small">Preço:</dt>
+                        <dd class="col-sm-8 fw-bold text-primary">@Model.Preco.ToString("C2", cultura)</dd>
+
+                        <dt class="col-sm-4 text-muted small">Status:</dt>
+                        <dd class="col-sm-8">@(Model.Status ? "Ativo" : "Inativo")</dd>
+
+                        <dt class="col-sm-4 text-muted small">Cadastrado por:</dt>
+                        <dd class="col-sm-8 mb-0">@Model.NomeUsuarioCadastro (ID #@Model.IdUsuarioCadastro)</dd>
+                    </dl>
+                </div>
+
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancelar</a>
+                        <button type="submit" class="btn btn-danger px-4">
+                            <i class="bi bi-trash-fill me-1"></i> Confirmar Exclusão
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

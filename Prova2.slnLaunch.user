@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "Prova2.API\\Prova2.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Prova2.Desktop\\Prova2.Desktop.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Prova2.Web\\Prova2.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

@@ -1,0 +1,71 @@
+﻿@model Prova2.Web.Models.ProdutoItemDto
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+    var cultura = new CultureInfo("pt-BR");
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-0" style="border-top: 4px solid #0A3D62 !important;">
+            <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
+                <div>
+                    <h5 class="mb-0 fw-bold" style="color: #0A3D62;">
+                        <i class="bi bi-box-seam me-2"></i> @Model.Nome
+                    </h5>
+                    <span class="text-muted small">Código do Produto: #@Model.Id</span>
+                </div>
+                @if (Model.Status)
+                {
+                    <span class="badge bg-success px-3 py-2">Ativo</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger px-3 py-2">Inativo</span>
+                }
+            </div>
+
+            <div class="card-body p-4">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <span class="text-muted small d-block">Preço Unitário</span>
+                            <h4 class="fw-bold text-primary mb-0 mt-1">@Model.Preco.ToString("C2", cultura)</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <span class="text-muted small d-block">Cadastrado por</span>
+                            <strong class="text-dark d-block mt-1">@Model.NomeUsuarioCadastro</strong>
+                            <span class="text-muted small">ID #@Model.IdUsuarioCadastro</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-light rounded border h-100">
+                            <span class="text-muted small d-block">Última Alteração</span>
+                            @if (Model.IdUsuarioUpdate.HasValue)
+                            {
+                                <strong class="text-primary d-block mt-1">@Model.NomeUsuarioUpdate</strong>
+                                <span class="text-muted small">ID #@Model.IdUsuarioUpdate</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted fst-italic d-block mt-1">Nenhuma alteração registrada</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between pt-3 border-top">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                        <i class="bi bi-arrow-left me-1"></i> Voltar ao Catálogo
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary px-4">
+                        <i class="bi bi-pencil-square me-1"></i> Editar Produto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
